@@ -6,7 +6,8 @@ order: 4
 ---
 
 
-this is 7am the ghost aka GF 7AM (all caps) tech enthusiast who enjoys **reverse engineering**, **malware analysis**, and **low-level programming**.
+~$whoami 
+>> this is 7am the ghost aka GF 7AM (all caps) tech enthusiast who enjoys **reverse engineering**, **malware analysis**, and **low-level programming**.
 
 ---
 
