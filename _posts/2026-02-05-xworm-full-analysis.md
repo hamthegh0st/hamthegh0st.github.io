@@ -12,7 +12,7 @@ XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with wide 
 *malware bazzar: `bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656`* <br>
  
 ### static analysis
-this PowerShell script was sortf of interresting, if we looked closely we would find that these two hex values are PE files, becaise they start with **[4D 5A]**, which is the magic bytes for MZ hdr.
+this PowerShell script was sortf of interresting, if we looked closely we would find that these two hex values are PE files, because they start with **[4D 5A]**, which is the magic bytes for MZ hdr.
 
 this is a common technique where one of them PEs is just a loader, and the other one is the acutal payload.
 ![image](/assets/images/1.PNG)
