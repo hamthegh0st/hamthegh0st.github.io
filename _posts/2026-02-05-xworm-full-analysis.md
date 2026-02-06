@@ -77,10 +77,58 @@ xworm is a multi-threaded malware, with separate threads handling persistence, C
 the behavioral analysis also reveals additional capabilities of this RAT.<br>
 
 ### behavioral analysis
-after setting up my monitoring tools and open the sample, and analyzing the  behavioral actions
-here what i came up with:
+after setting up my monitoring tools and opening the sample, and analyzing the  behavioral actions, i noticed tons of system changes, registry changes; tons of keys being read/deleted/changed/added,<br>
+logs being deleted, files being added, and shockingly keystrokes being keylogged.<br>
+here what i came up with..<br><br>
 
-#### file system activities
 
-#### registry activities: 
+to keep persistency, as we saw at the code analysis section, xowrm copied itself a couple of times at `User\AppData\Roaming` and copying itself at startup
+![image](/assets/images/writefilefilterd.PNG)
+![image](/assets/images/ratinroaming folder.PNG)
+![image](/assets/images/startup folder.PNG)<br><br>
+
+i also found out that it was keylogging my keystrokes the whole time! and logging it at `User\AppData\Local\temp` as `log.tmp` 
+![image](/assets/images/keylogger.PNG)
+<br><br>
+
+here it reads these what it called `desktop.ini`, this is a simple common technique for vm&sandbox detection.
+![image](/assets/images/readinginis.PNG)
+`C:\Users\desktop.ini`
+`C:\Users\MaldevUser\Searches\desktop.ini` <br>
+`C:\Users\MaldevUser\Contacts\desktop.ini` <br>
+`C:\Users\MaldevUser\Favorites\desktop.ini` <br>
+`C:\Users\MaldevUser\Links\desktop.ini` <br>
+`C:\Users\MaldevUser\Saved Games\desktop.ini` <br>
+`desktop.ini` is a standard, non-malicious Windows configuration file that stores customized folder settings like icons, localized names, and view options.<br>
+the malware reads it so it can assume weather it's in a sandbox/vm or not, are folders are populated?, because as we know vms/sandboxes mostly do not contain much of folders.<br>
+it's also kind of stealthy way of recon, allowing the malware to recon in a low noise <br><br>
+
+there were so much reg keys created, on of theme is the one at `Run` as we saw earlier at the code analysis section
+![image](/assets/images/run%20presistence.PNG)
+to keep persistency .
+
+after extracting the ProcMon logs, with the help of ProcDot i managed to make this graph of sequence from the process creation and what did xowrm tried to do.
+![image](/assets/images/procdotgraph sequence.png)
+the malware reads several Windows registry keys related to internet zone settings to understand the network environment it is running in. 
+these keys help determine:<br>
+-whether the system is part of a local corporate network (Intranet) <br>
+-whether network shares (UNC paths) are treated as trusted <br>
+-whether internet traffic can bypass a proxy without inspection <br>
+
+by checking these settings, the malware can decide if it is running on a personal machine
+or a corporate environment, and adjust its behavior accordingly
+(for example, choosing when or how to communicate with its command-and-control server).
+
+### IOCs
+
+| Category | Value | Notes |
+|--------|-------|-------|
+| Domain  | mo1010.duckdns.org | possible C2 server
+| Network | TCP Port: 7000 | default listening port |
+| File | xworm.exe | main malware binary |
+| File | xworm.lnk | startup persistence |
+| File | log.tmp | keystrokes logs |
+| Registry | HKCU\Software\Microsoft\Windows\CurrentVersion\Run | auto-start |
+| Registry | HKCU\...\ZoneMap\ProxyBypass | proxy detection |
+
 
