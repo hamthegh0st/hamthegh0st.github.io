@@ -12,11 +12,11 @@ XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with wide 
 *malware bazzar: `bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656`* <br>
  
 ### static analysis
-this PowerShell script was sortf of interresting, if we looked closely we would find that these two hex values are PE files, because they start with **[4D 5A]**, which is the magic bytes for MZ hdr.
+this PowerShell script was sort of interesting, if we looked closely we would find that these two hex values are PE files, because they start with **[4D 5A]**, which is the magic bytes for MZ hdr.
 
-this is a common technique where one of them PEs is just a loader, and the other one is the acutal payload.
+this is a common technique where one of them PEs is just a loader, and the other one is the actual payload.
 ![image](/assets/images/1.PNG)
-how do we know the loader from the actual payload? if we looked closely we can conclude that `$YHYA` is the acutal payload, that's because it was loaded to the memory (that simple!), that was later injected to RegSvcs.exe which's the loader.
+how do we know the loader from the actual payload? if we looked closely we can conclude that `$YHYA` is the actual payload, that's because it was loaded to the memory (that simple!), that was later injected to RegSvcs.exe which's the loader.
 
 
 ![image](/assets/images/2.PNG)
@@ -24,7 +24,7 @@ and this a scheduler that runs this script every 2 mins.
 
 
 ![image](/assets/images/3.PNG)
-simple obufscation. i replaced the "!" signs and saved it as "xworm.file" so i can't accidentally run before i analyze the code. 
+simple obfuscation. i replaced the "!" signs and saved it as "xworm.file" so i can't accidentally run before i analyze the code. 
 
 
 ![image](/assets/images/4.png)
@@ -37,14 +37,14 @@ and it's a 32bit .NET binary.  i then looked at the binary imports -that were so
 
 
 ### code analysis
-since it's a .NET binary, opend it in DnSpy and went to the EP. and that's what i firist found:
+since it's a .NET binary, opened it in DnSpy and went to the EP. and that's what i first found:
 ![image](/assets/images/7.PNG)
-since it's a .NET binary, opend it in DnSpy and went to the EP. and that's what i firist found:
+since it's a .NET binary, opened it in DnSpy and went to the EP. and that's what i first found:
 ![image](/assets/images/8.PNG)
 after that i went to the arguments that were passed to the function, and it was likely the encrypted data that will be decrypted:
 ![image](/assets/images/9.PNG)
 
-i then managed to put a BP at the first line and passed over a couple of time and happed what was expected.
+i then managed to put a BP at the first line and passed over a couple of time and happened what was expected.
 ![image](/assets/images/10.PNG)
 
 i made a watch window and passed the encrypted function arguments to speed up the process and that's what i found:
@@ -57,15 +57,15 @@ except for `"C:\User\MaldevUser\AppData\Roaming"`, i thought that it was the pat
 This code confirms what i was saying above, here it makes an instance of itself at the path:
 ![image](/assets/images/12.PNG)
 if the file exists, it overwrites it, then sleeps for 1000 seconds. <br>
-why is that? because it's going to use this copy later for presistence technique layers.
+why is that? because it's going to use this copy later for persistence technique layers.
 
 the first layer was Scheduled Task persistence task as expected
 ![image](/assets/images/13.PNG)
 new ProcessStartInfo("schtasks.exe"); //opens schtasks.exe <br>
 processStartInfo.WindowStyle = ProcessWindowStyle.Hidden; //hidden so the user don't notice.<br>
-`/create  /f  /RL HIGHEST  /sc minute  /mo 1`  -> creats a task, overwrites if a one was there, run as highest privileges, and schedule: every minute.
+`/create  /f  /RL HIGHEST  /sc minute  /mo 1`  -> creates a task, overwrites if a one was there, run as highest privileges, and schedule: every minute.
 
-here it's using Registery as a persistence technique at -> `HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run` , most common autostart location at windows.
+here it's using Registry as a persistence technique at -> `HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run` , most common autostart location at windows.
 ![image](/assets/images/14.PNG)
 
 this is another layer of persistence technique:
@@ -77,5 +77,10 @@ xworm is a multi-threaded malware, with separate threads handling persistence, C
 the behavioral analysis also reveals additional capabilities of this RAT.<br>
 
 ### behavioral analysis
-after setting up my monitoring tools,
+after setting up my monitoring tools and open the sample, and analyzing the  behavioral actions
+here what i came up with:
+
+#### file system activities
+
+#### registry activities: 
 
