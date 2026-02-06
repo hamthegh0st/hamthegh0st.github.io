@@ -16,7 +16,7 @@ this PowerShell script was sortf of interresting, if we looked closely we would 
 
 this is a common technique where one of them PEs is just a loader, and the other one is the acutal payload.
 ![image](/assets/images/1.PNG)
-how do we know the loader from the actual payload? if we looked closely we can conclude that `$YHYA` is the acutal one, that's because it was loaded to the memory (that simple!), that was later injected to RegSvcs.exe which's the loader.
+how do we know the loader from the actual payload? if we looked closely we can conclude that `$YHYA` is the acutal payload, that's because it was loaded to the memory (that simple!), that was later injected to RegSvcs.exe which's the loader.
 
 
 ![image](/assets/images/2.PNG)
