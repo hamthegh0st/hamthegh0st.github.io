@@ -24,7 +24,7 @@ and this a scheduler that runs this script every 2 mins.
 
 
 ![image](/assets/images/3.PNG)
-simple obfuscation. i replaced the "!" signs and saved it as "xworm.file" so i can't accidentally run before i analyze the code. 
+simple obfuscation. i replaced the "!" signs and saved it as "xworm.file" so i can't accidentally run it analyzing the code. 
 
 
 ![image](/assets/images/4.png)
