@@ -26,7 +26,7 @@ and this a scheduler that runs this script every 2 mins.
 simple obufscation. i replaced the "!" signs and saved it as "xworm.file" so i can't accidentally run before i analyze the code. 
 
 
-![image](/assets/images/4.PNG)
+![image](/assets/images/4.png)
 <p align="center">here's the scan for both, first one on the left is the ps script, the second is after extracting the payload.</p>
 <br>
 
