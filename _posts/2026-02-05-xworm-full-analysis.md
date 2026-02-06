@@ -3,7 +3,6 @@ layout: post
 title: "XWorm RAT: Full Malware Analysis & Behavioral Breakdown"
 date: 2026-02-05 12:00:00 +0200
 categories: [Malware Analysis]
-thumbnail: /assets/images/xworm-thumbnail.png
 image: /assets/images/xworm-thumbnail.png
 ---
 
