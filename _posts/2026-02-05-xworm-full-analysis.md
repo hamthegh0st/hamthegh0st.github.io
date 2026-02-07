@@ -39,33 +39,33 @@ and it's a 32bit .NET binary.  i then looked at the binary imports -that were so
 ### code analysis
 since it's a .NET binary, opened it in DnSpy and went to the EP. and that's what i first found:
 ![image](/assets/images/7.PNG)
-there were some function that was frequently repeated, after parsing to it, it was so obvious that it was an AES encryption routine, with a 32 byte key length (128-bit).
+there was some function that was frequently repeated, after parsing to it, it was so obvious that it was an AES encryption routine, with a 16-byte key length (128-bit)..
 ![image](/assets/images/8.PNG)
-after that i went to the arguments that were passed to the function,  likely there were the encrypted data that will be decrypted
+after that i went to the arguments that were passed to the function,  most likely these were the encrypted data.
 ![image](/assets/images/9.PNG)
 
 i then managed to put a BP at the first line and passed over a couple of time and happened what was expected.
 ![image](/assets/images/10.PNG)
 
-i made a watch window and passed the encrypted function arguments to speed up the process and that's what i found:
+i created a Watch window and passed the encrypted function arguments to speed up the process and that's what i found:
 ![image](/assets/images/11.PNG)
 the first value was a domain -> `"mo1010.duckdns.org"` which's most likely the C2 server.<br>
 the second one `"7000"` -> the port.<br>
 the other ones i couldn't tell exactly what were they,
-except for `"C:\User\MaldevUser\AppData\Roaming"`, i thought that it was the path were it was going to be an instance of the malware, because when i first run it, i found it copies itself at the same path.
+except for `"C:\User\MaldevUser\AppData\Roaming"`, I assumed this was the path where an instance of the malware would be dropped, because when i first run it, i found it copies itself at the same path.
 
-This code confirms what i was saying above, here it makes an instance of itself at the path:
+This code confirms what was mentioned earlier, here it makes an instance of itself at the path:
 ![image](/assets/images/12.PNG)
 if the file exists, it overwrites it, then sleeps for 1000 seconds. <br>
-why is that? because it's going to use this copy later for persistence technique layers.
+why is that? because it's going to use this copy later for layered persistence techniques.
 
-the first layer was Scheduled Task persistence task as expected
+the first layer was a Scheduled Task persistence mechanism as expected
 ![image](/assets/images/13.PNG)
 new ProcessStartInfo("schtasks.exe"); //opens schtasks.exe <br>
-processStartInfo.WindowStyle = ProcessWindowStyle.Hidden; //hidden so the user don't notice.<br>
-`/create  /f  /RL HIGHEST  /sc minute  /mo 1`  -> creates a task, overwrites if a one was there, run as highest privileges, and schedule: every minute.
+processStartInfo.WindowStyle = ProcessWindowStyle.Hidden; //hidden so the user does not notice.<br>
+`/create  /f  /RL HIGHEST  /sc minute  /mo 1`  -> creates a task, overwrites an existing task if one is already present, run as highest privileges, and schedule: every minute.
 
-here it's using Registry as a persistence technique at -> `HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run` , most common autostart location at windows.
+here it's using Registry as a persistence technique at -> `HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run` , one of the most common Windows auto-start locations
 ![image](/assets/images/14.PNG)
 
 this is another layer of persistence technique:
@@ -77,9 +77,9 @@ xworm is a multi-threaded malware, with separate threads handling persistence, C
 the behavioral analysis also reveals additional capabilities of this RAT.<br>
 
 ### behavioral analysis
-after setting up my monitoring tools and opening the sample, and analyzing the  behavioral actions, i noticed tons of system changes, registry changes; tons of keys being read/deleted/changed/added,<br>
-logs being deleted, files being added, and shockingly keystrokes being keylogged.<br>
-here what i came up with..<br><br>
+after setting up my monitoring tools and opening the sample, and analyzing the  behavioral activities, i noticed tons of system changes, registry changes; tons of keys being read/deleted/changed/added,<br>
+logs being deleted, files being added, and shockingly my keystrokes was being keylogged.<br>
+here's what i came up with..<br><br>
 
 
 to keep persistency, as we saw at the code analysis section, xowrm copied itself a couple of times at `User\AppData\Roaming` and copying itself at startup
