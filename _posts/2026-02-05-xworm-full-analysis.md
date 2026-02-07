@@ -61,8 +61,8 @@ why is that? because it's going to use this copy later for layered persistence t
 
 the first layer was a Scheduled Task persistence mechanism as expected
 ![image](/assets/images/13.PNG)
-new ProcessStartInfo("schtasks.exe"); //opens schtasks.exe <br>
-processStartInfo.WindowStyle = ProcessWindowStyle.Hidden; //hidden so the user does not notice.<br>
+`new ProcessStartInfo("schtasks.exe");` //opens schtasks.exe <br>
+`processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;` //hidden so the user does not notice any suspicious behaviour.<br>
 `/create  /f  /RL HIGHEST  /sc minute  /mo 1`  -> creates a task, overwrites an existing task if one is already present, run as highest privileges, and schedule: every minute.
 
 here it's using Registry as a persistence technique at -> `HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run` , one of the most common Windows auto-start locations
