@@ -107,7 +107,7 @@ there were so much reg keys created, on of theme is the one at `Run` as we saw e
 ![image](/assets/images/run%20presistence.PNG)
 to keep persistency .
 
-after extracting the ProcMon logs, with the help of ProcDot i managed to make this graph of sequence from the process creation and what did xowrm tried to do.
+after extracting ProcMon logs, with the help of ProcDot i managed to make this graph of sequence from the process creation and what did xowrm tried to do.
 ![image](/assets/images/procdotgraph sequence.png)
 the malware reads several Windows registry keys related to internet zone settings to understand the network environment it is running in. 
 these keys help determine:<br>
@@ -125,6 +125,7 @@ or a corporate environment, and adjust its behavior accordingly
 |--------|-------|-------|
 | Domain  | mo1010.duckdns.org | possible C2 server
 | Network | TCP Port: 7000 | default listening port |
+| File |  RegSvcs.exe | malware loader | 
 | File | xworm.exe | main malware binary |
 | File | xworm.lnk | startup persistence |
 | File | log.tmp | keystrokes logs |
