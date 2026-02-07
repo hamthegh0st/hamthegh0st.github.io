@@ -39,7 +39,7 @@ and it's a 32bit .NET binary.  i then looked at the binary imports -that were so
 ### code analysis
 since it's a .NET binary, opened it in DnSpy and went to the EP. and that's what i first found:
 ![image](/assets/images/7.PNG)
-since it's a .NET binary, opened it in DnSpy and went to the EP. and that's what i first found:
+there were some function that was frequently repeated, after parsing to it, i was so obvious that it was an AES encryption routine, with 32 byte key length (128-bit).
 ![image](/assets/images/8.PNG)
 after that i went to the arguments that were passed to the function, and it was likely the encrypted data that will be decrypted:
 ![image](/assets/images/9.PNG)
