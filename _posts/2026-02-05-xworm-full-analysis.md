@@ -12,7 +12,7 @@ XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wid
 *malware bazzar: `bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656`* <br>
  <br>
 ![image](/assets/images/XWorm Infection chain.png)
-<p align="center">infection chain </p>
+<p align="center"> XWorm infection chain </p>
 
 
 ### static analysis
