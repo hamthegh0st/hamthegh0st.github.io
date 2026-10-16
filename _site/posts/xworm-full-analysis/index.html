@@ -11,16 +11,13 @@
 
 
 
-
-
 <!-- `site.alt_lang` can specify a language different from the UI -->
-<html lang="en" >
+<html
+  lang="en">
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta
     name="viewport"
     content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
@@ -28,26 +25,26 @@
 
   
 
-  <!-- Begin Jekyll SEO tag v2.8.0 -->
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain" />
-<meta property="og:description" content="XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain" />
+<meta name="twitter:description" property="og:description" content="XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain" />
 <link rel="canonical" href="http://localhost:4000/posts/xworm-full-analysis/" />
 <meta property="og:url" content="http://localhost:4000/posts/xworm-full-analysis/" />
-<meta property="og:site_name" content="7amthereaper" />
+<meta property="og:site_name" content="hamthegh0st" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-02-05T12:00:00+02:00" />
+<meta property="article:modified_time" content="2026-03-19T15:26:13+02:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown" />
+<meta name="twitter:title" content="XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-19T15:26:13+02:00","datePublished":"2026-02-05T12:00:00+02:00","description":"XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain","headline":"XWorm RAT: Full Malware Analysis &amp; Behavioral Breakdown","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/xworm-full-analysis/"},"url":"http://localhost:4000/posts/xworm-full-analysis/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-19T15:26:13+02:00","datePublished":"2026-02-05T12:00:00+02:00","description":"XWorm RAT XWorm is a MaaS multifunctional RAT that was first discovered in 2022 with a wide range of capabilities. sample hash: e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 malware bazzar: bazaar.abuse.ch/sample/e4c179fa5bc03b07e64e65087afcbad04d40475204ebb0a0bc7d77f071222656 XWorm infection chain","headline":"XWorm RAT: Full Malware Analysis \u0026amp; Behavioral Breakdown","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/xworm-full-analysis/"},"url":"http://localhost:4000/posts/xworm-full-analysis/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>XWorm RAT: Full Malware Analysis & Behavioral Breakdown | 7amthereaper
-  </title>
+  <title>XWorm RAT: Full Malware Analysis & Behavioral Breakdown | hamthegh0st</title>
 
   <!--
   The Favicons for Web, Android, Microsoft, and iOS (iPhone and iPad) Apps
@@ -90,7 +87,7 @@
 
   <!-- Bootstrap -->
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
   
 
   <!-- Theme style -->
@@ -100,21 +97,21 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7/css/all.min.css">
 
   <!-- 3rd-party Dependencies -->
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.css">
   
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2/dist/loading-attribute-polyfill.min.css">
   
 
   
     <!-- Image Popup -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3/dist/css/glightbox.min.css">
   
 
   <!-- Scripts -->
@@ -216,7 +213,7 @@
 
 
 
-  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/en.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js,npm/tocbot@4.36.4/dist/tocbot.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3/dist/js/glightbox.min.js,npm/clipboard@2/dist/clipboard.min.js,npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.js,npm/dayjs@1/plugin/relativeTime.js,npm/dayjs@1/plugin/localizedFormat.js,npm/tocbot@4/dist/tocbot.min.js"></script>
 
 
 
@@ -250,7 +247,7 @@
   <header class="profile-wrapper">
     <a href="/" id="avatar" class="rounded-circle"><img src="https://avatars.githubusercontent.com/u/224402173?v=4" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a>
 
-    <a class="site-title d-block" href="/">7amthereaper</a>
+    <a class="site-title d-block" href="/">hamthegh0st</a>
     <p class="site-subtitle fst-italic mb-0">reverse engineer and malware analyst</p>
   </header>
   <!-- .profile-wrapper -->
@@ -289,11 +286,27 @@
     </ul>
   </nav>
 
-  <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
-    
-      <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle">
-        <i class="fas fa-adjust"></i>
-      </button>
+  <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">
+    <div class="btn-group dropup">
+        <button
+          type="button"
+          class="btn btn-link nav-link"
+          aria-label="Switch Mode"
+          id="mode-toggle"
+          data-bs-toggle="dropdown"
+        ><i class="fa-regular fa-sun" data-theme-mode="light"></i><i class="fa-regular fa-moon" data-theme-mode="dark"></i><i class="fa-solid fa-display" data-theme-mode="system"></i></button>
+        <ul class="dropdown-menu rounded-3 mb-1 p-1">
+          <li>
+            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="light"><i class="fa-regular fa-sun" data-theme-mode="light"></i>Light</button>
+          </li>
+          <li>
+            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="dark"><i class="fa-regular fa-moon" data-theme-mode="dark"></i>Dark</button>
+          </li>
+          <li>
+            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="system"><i class="fa-solid fa-display" data-theme-mode="system"></i>System</button>
+          </li>
+        </ul>
+      </div>
 
       
         <span class="icon-border"></span>
@@ -304,7 +317,7 @@
 
       
         <a
-          href="https://github.com/7amthereaper"
+          href="https://github.com/hamthegh0st"
           aria-label="github"
           
 
@@ -2142,7 +2155,7 @@
         Posted
         <!--
   Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
+  See: ${JS_ROOT}/modules/components/locale-datetime.js
 -->
 
 
@@ -2167,7 +2180,7 @@
           Updated
           <!--
   Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
+  See: ${JS_ROOT}/modules/components/locale-datetime.js
 -->
 
 
@@ -2198,7 +2211,7 @@
 
           <em>
             
-              <a href="https://github.com/7amthereaper">7amthereaper</a>
+              <a href="https://github.com/hamthegh0st">hamthegh0st</a>
             
           </em>
         </span>
@@ -2253,9 +2266,7 @@
     <dialog id="toc-popup" class="p-0">
       <div class="header d-flex flex-row align-items-center justify-content-between">
         <div class="label text-truncate py-2 ms-4">XWorm RAT: Full Malware Analysis & Behavioral Breakdown</div>
-        <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
-          <i class="fas fa-close"></i>
-        </button>
+        <button id="toc-popup-close" type="button" class="btn-close btn-sm mx-3" aria-label="Close"></button>
       </div>
       <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
     </dialog>
@@ -2431,14 +2442,28 @@ or a corporate environment, and adjust its behavior accordingly
   </div>
 
   <div class="post-tail-wrapper text-muted">
-    <!-- categories -->
-    
-      <div class="post-meta mb-3">
-        <i class="far fa-folder-open fa-fw me-1"></i>
-        
-          <a href="/categories/malware-analysis/">Malware Analysis</a>
-      </div>
-    
+    <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+      <!-- categories -->
+      
+        <div class="post-meta">
+          <i class="far fa-folder-open fa-fw me-1"></i>
+          
+            <a href="/categories/malware-analysis/">Malware Analysis</a>
+        </div>
+      
+
+      <!-- "Edit this post" link -->
+      <!-- Link to edit the post to contribute. -->
+
+
+
+
+
+
+
+
+
+    </div>
 
     <!-- tags -->
     
@@ -2474,21 +2499,21 @@ or a corporate environment, and adjust its behavior accordingly
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=XWorm%20RAT:%20Full%20Malware%20Analysis%20&%20Behavioral%20Breakdown%20-%207amthereaper&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fxworm-full-analysis%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=XWorm%20RAT:%20Full%20Malware%20Analysis%20&%20Behavioral%20Breakdown%20-%20hamthegh0st&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fxworm-full-analysis%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
 
       
 
-      <a href="https://www.facebook.com/sharer/sharer.php?title=XWorm%20RAT:%20Full%20Malware%20Analysis%20&%20Behavioral%20Breakdown%20-%207amthereaper&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fxworm-full-analysis%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?title=XWorm%20RAT:%20Full%20Malware%20Analysis%20&%20Behavioral%20Breakdown%20-%20hamthegh0st&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fxworm-full-analysis%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
         <i class="fa-fw fab fa-facebook-square"></i>
       </a>
     
 
       
 
-      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fxworm-full-analysis%2F&text=XWorm%20RAT:%20Full%20Malware%20Analysis%20&%20Behavioral%20Breakdown%20-%207amthereaper" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fxworm-full-analysis%2F&text=XWorm%20RAT:%20Full%20Malware%20Analysis%20&%20Behavioral%20Breakdown%20-%20hamthegh0st" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
         <i class="fa-fw fab fa-telegram"></i>
       </a>
     
@@ -2543,7 +2568,14 @@ or a corporate environment, and adjust its behavior accordingly
         
         
         <li class="text-truncate lh-lg">
-          <a href="/posts/brbbot-full-analysis/">Brbbot: Full Malware Analysis & Reverse Engineering</a>
+          <a href="/posts/hancitor-full-analysis/">Hancitor: Multi-Stage Infection Chain Analysis & Reverse Engineering</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/brbbot-full-analysis/">[lab] Brbbot: Full Malware Analysis & Reverse Engineering</a>
         </li>
       
         
@@ -2644,6 +2676,18 @@ or a corporate environment, and adjust its behavior accordingly
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -2659,11 +2703,11 @@ or a corporate environment, and adjust its behavior accordingly
     <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
       
         <article class="col">
-          <a href="/posts/brbbot-full-analysis/" class="post-preview card h-100">
+          <a href="/posts/hancitor-full-analysis/" class="post-preview card h-100">
             <div class="card-body">
               <!--
   Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
+  See: ${JS_ROOT}/modules/components/locale-datetime.js
 -->
 
 
@@ -2671,14 +2715,42 @@ or a corporate environment, and adjust its behavior accordingly
 
 <time
   
-  data-ts="1773568800"
+  data-ts="1791972000"
   data-df="ll"
   
 >
-  Mar 15, 2026
+  Oct 14, 2026
 </time>
 
-              <h4 class="pt-0 my-2">Brbbot: Full Malware Analysis & Reverse Engineering</h4>
+              <h4 class="pt-0 my-2">Hancitor: Multi-Stage Infection Chain Analysis & Reverse Engineering</h4>
+              <div class="text-muted">
+                <p>Hancitor Hancitor(aka Chanitor) emerged in 2013 which spread via social engineering techniques mainly through phishing mails embedded with malicious link and weaponized Microsoft office document co...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/brbbot-full-analysis/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/modules/components/locale-datetime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1774173600"
+  data-df="ll"
+  
+>
+  Mar 22, 2026
+</time>
+
+              <h4 class="pt-0 my-2">[lab] Brbbot: Full Malware Analysis & Reverse Engineering</h4>
               <div class="text-muted">
                 <p>Brbbot functions as a trojan or bot, it can also be used as a backdoor. sample hash: f9227a44ea25a7ee8148e2d0532b14bb640f6dc52cb5b22a9f4fa7fa037417fa  Quick triage frisking strings was pretty usefu...</p>
               </div>
@@ -2711,7 +2783,7 @@ or a corporate environment, and adjust its behavior accordingly
       class="btn btn-outline-primary"
       aria-label="Newer"
     >
-      <p>Brbbot: Full Malware Analysis & Reverse Engineering</p>
+      <p>[lab] Brbbot: Full Malware Analysis & Reverse Engineering</p>
     </a>
   
 </nav>
@@ -2731,7 +2803,7 @@ or a corporate environment, and adjust its behavior accordingly
     <time>2026</time>
 
     
-      <a href="https://github.com/7amthereaper">7amthereaper</a>.
+      <a href="https://github.com/hamthegh0st">hamthegh0st</a>.
     
 
     
@@ -2746,7 +2818,7 @@ or a corporate environment, and adjust its behavior accordingly
   <p>Using the <a
         data-bs-toggle="tooltip"
         data-bs-placement="top"
-        title="v7.4.1"
+        title="v7.6.0"
         href="https://github.com/cotes2020/jekyll-theme-chirpy"
         target="_blank"
         rel="noopener"
@@ -2800,26 +2872,26 @@ or a corporate environment, and adjust its behavior accordingly
     
       <aside
   id="notification"
-  class="toast"
+  class="toast w-auto rounded-5 text-nowrap"
   role="alert"
   aria-live="assertive"
   aria-atomic="true"
   data-bs-animation="true"
   data-bs-autohide="false"
 >
-  <div class="toast-header">
+  <div class="d-flex align-items-center">
+    <div class="toast-body ps-3">New content available</div>
     <button
       type="button"
-      class="btn-close ms-auto"
+      class="btn btn-primary btn-sm rounded-2 py-0"
+      aria-label="Update"
+    >Update</button>
+    <button
+      type="button"
+      class="btn-close mx-3 ms-2"
       data-bs-dismiss="toast"
       aria-label="Close"
     ></button>
-  </div>
-  <div class="toast-body text-center pt-0">
-    <p class="px-2 mb-3">A new version of content is available.</p>
-    <button type="button" class="btn btn-primary" aria-label="Update">
-      Update
-    </button>
   </div>
 </aside>
 
