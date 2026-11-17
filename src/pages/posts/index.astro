@@ -1,0 +1,4 @@
+---
+import {getCollection} from "astro:content"; import Base from "../../layouts/Base.astro"; const posts=(await getCollection("posts")).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
+---
+<Base title="Posts"><h1>Posts</h1><ul class="post-list">{posts.map(p=><li><span class="date">{p.data.publishDate.toLocaleDateString("en-GB")}</span><a class="post-title" href={`/posts/${p.id}/`}>{p.data.title}</a><p class="muted">{p.data.description}</p></li>)}</ul></Base>
