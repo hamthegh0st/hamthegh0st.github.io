@@ -1,0 +1,4 @@
+---
+import "../styles/global.css"; const {title="Home",description="Malware analysis and reverse engineering."}=Astro.props;
+---
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><title>{title} · hamthegh0st</title><link rel="icon" href="/assets/img/favicons/favicon.ico"/></head><body><div class="wrap"><header><a class="brand" href="/">hamthegh0st<span>.</span></a><nav><a href="/">Home</a><a href="/posts/">Posts</a><a href="/about/">About</a><a href="https://github.com/hamthegh0st">GitHub ↗</a></nav></header><main><slot/></main><footer>© {new Date().getFullYear()} Mohamed El-shahat Ramadan · Malware Analysis & Reverse Engineering</footer></div></body></html>
