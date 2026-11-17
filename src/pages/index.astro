@@ -15,6 +15,6 @@ const posts = (await getAllPosts()).sort(collectionDateSort) as CollectionEntry<
   </section>
   <section class="mt-16">
     <h2 class="title mb-6 text-xl">Latest posts</h2>
-    <ul class="space-y-4" role="list">{posts.slice(0, 10).map((post) => <li class="grid gap-1 sm:grid-cols-[auto_1fr]"><PostPreview post={post} withDesc /></li>)}</ul>
+    <ul class="space-y-4" role="list">{posts.slice(0, 10).map((post) => <li class="grid gap-2 sm:grid-cols-[8rem_minmax(0,1fr)] sm:gap-x-6 sm:gap-y-2 sm:[&>q]:col-start-2"><PostPreview post={post} withDesc /></li>)}</ul>
   </section>
 </PageLayout>
