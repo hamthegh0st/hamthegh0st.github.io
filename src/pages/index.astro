@@ -1,4 +1,20 @@
 ---
-import {getCollection} from "astro:content"; import Base from "../layouts/Base.astro"; const posts=(await getCollection("posts")).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
+import { type CollectionEntry } from "astro:content";
+import PostPreview from "@/components/blog/PostPreview.astro";
+import SocialList from "@/components/SocialList.astro";
+import { getAllPosts } from "@/data/post";
+import PageLayout from "@/layouts/Base.astro";
+import { collectionDateSort } from "@/utils/date";
+const posts = (await getAllPosts()).sort(collectionDateSort) as CollectionEntry<"post">[];
 ---
-<Base title="Malware Analysis & Reverse Engineering"><section class="intro"><h1>Malware Analysis &amp; Reverse Engineering</h1><p>Cybersecurity student focused on malware analysis, reverse engineering, and understanding how software works under the hood.</p><p>Technical write-ups, lab notes, unpacking, debugging, Windows internals, and low-level research.</p></section><h2>Latest posts</h2><ul class="post-list">{posts.map(p=><li><span class="date">{p.data.publishDate.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"})}</span><a class="post-title" href={`/posts/${p.id}/`}>{p.data.title}</a><p class="muted">{p.data.description}</p></li>)}</ul></Base>
+<PageLayout meta={{ title: "Malware Analysis & Reverse Engineering" }}>
+  <section>
+    <h1 class="title mb-8">Malware Analysis &amp; Reverse Engineering</h1>
+    <p class="mb-4">Technical write-ups, lab notes, and research on malware behavior, reverse engineering, Windows internals, unpacking, and low-level security.</p>
+    <SocialList />
+  </section>
+  <section class="mt-16">
+    <h2 class="title mb-6 text-xl">Latest posts</h2>
+    <ul class="space-y-4" role="list">{posts.slice(0, 10).map((post) => <li class="grid gap-1 sm:grid-cols-[auto_1fr]"><PostPreview post={post} withDesc /></li>)}</ul>
+  </section>
+</PageLayout>

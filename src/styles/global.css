@@ -1,1 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');:root{color-scheme:dark;--bg:#1d1f21;--text:#c9cacc;--muted:#8b9298;--accent:#2bbc8a;--line:#3b4145}*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.8 'IBM Plex Mono',monospace}.wrap{max-width:860px;margin:auto;padding:34px 26px}header{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:70px}.brand{font-size:23px;font-weight:700;color:#e7e7e7;text-decoration:none}.brand span{color:var(--accent)}nav{display:flex;gap:20px;flex-wrap:wrap}a{color:var(--accent);text-decoration:none}a:hover{color:#b4f3d9;text-decoration:underline}nav a{color:var(--muted);font-size:13px}h1,h2,h3{color:#e6e6e6;line-height:1.35}h1{font-size:clamp(25px,4vw,36px);margin:0 0 16px}h2{font-size:21px;margin-top:42px}p{margin:18px 0}.muted,.date{color:var(--muted)}.intro{margin-bottom:56px}.intro p{color:var(--muted)}.post-list{list-style:none;padding:0}.post-list li{padding:19px 0;border-bottom:1px dashed var(--line)}.post-title{font-weight:600}.date{display:block;font-size:12px;margin-bottom:5px}article{overflow-wrap:anywhere}article img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:3px}article pre{overflow:auto;background:#141617;border:1px solid var(--line);padding:18px;border-radius:3px}article blockquote{border-left:3px solid var(--accent);padding-left:18px;color:var(--muted)}article table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid var(--line);padding:8px}hr{border:0;border-top:1px dashed var(--line);margin:36px 0}footer{border-top:1px solid var(--line);margin-top:80px;padding-top:22px;color:var(--muted);font-size:12px}@media(max-width:620px){.wrap{padding:22px 17px}header{align-items:flex-start;flex-direction:column;margin-bottom:45px}nav{gap:14px}}
+@layer theme, base, pagefind, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* tailwind to ignore satori generated og-image */
+@source not "../pages/og-image";
+/* config for tailwindcss-typography plugin */
+@config "../../tailwind.config.ts";
+
+/* use a selector-based strategy for dark mode */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* register custom colour properties */
+@property --color-global-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: oklch(98.48% 0 0);
+}
+@property --color-global-text {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: oklch(26.99% 0.0096 235.05);
+}
+@property --color-muted {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: oklch(44.6% 0.03 256.802);
+}
+@property --color-link {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: oklch(55.44% 0.0431 185.69);
+}
+@property --color-accent {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: oklch(55.27% 0.195 19.06);
+}
+@property --color-accent-2 {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: oklch(18.15% 0 0);
+}
+@property --color-quote {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: oklch(55.27% 0.195 19.06);
+}
+
+/* you could refactor below to use light-dark(), depending on your target audience */
+@theme {
+	--color-global-bg: oklch(98.48% 0 0);
+	--color-global-text: oklch(26.99% 0.0096 235.05);
+	--color-muted: oklch(44.6% 0.03 256.802);
+	--color-link: oklch(55.44% 0.0431 185.69);
+	--color-accent: oklch(55.27% 0.195 19.06);
+	--color-accent-2: oklch(18.15% 0 0);
+	--color-quote: oklch(55.27% 0.195 19.06);
+}
+
+@layer base {
+	html {
+		color-scheme: light dark;
+		accent-color: var(--color-accent);
+		scrollbar-gutter: stable;
+
+		&[data-theme="light"] {
+			color-scheme: light;
+		}
+
+		&[data-theme="dark"] {
+			color-scheme: dark;
+			--color-global-bg: oklch(23.64% 0.0045 248);
+			--color-global-text: oklch(83.54% 0 264);
+			--color-muted: oklch(70.7% 0.022 261.325);
+			--color-link: oklch(70.44% 0.1133 349);
+			--color-accent: oklch(70.91% 0.1415 163.7);
+			--color-accent-2: oklch(94.66% 0 0);
+			--color-quote: oklch(94.8% 0.106 136.49);
+		}
+
+		--color-mode-transition-duration: 300ms;
+		--color-mode-transition-easing: ease-in-out;
+
+		transition:
+			--color-global-bg var(--color-mode-transition-duration) var(--color-mode-transition-easing),
+			--color-global-text var(--color-mode-transition-duration) var(--color-mode-transition-easing),
+			--color-muted var(--color-mode-transition-duration) var(--color-mode-transition-easing),
+			--color-link var(--color-mode-transition-duration) var(--color-mode-transition-easing),
+			--color-accent var(--color-mode-transition-duration) var(--color-mode-transition-easing),
+			--color-accent-2 var(--color-mode-transition-duration) var(--color-mode-transition-easing),
+			--color-quote var(--color-mode-transition-duration) var(--color-mode-transition-easing);
+	}
+
+	:target {
+		scroll-margin-block: 5ex;
+	}
+
+	@view-transition {
+		navigation: auto;
+	}
+
+	/* Astro image responsive styles, modified from -> https://docs.astro.build/en/guides/images/#responsive-image-styles */
+	:where([data-astro-image]) {
+		object-fit: var(--fit);
+		object-position: var(--pos);
+	}
+	[data-astro-image="full-width"] {
+		width: 100%;
+	}
+	[data-astro-image="constrained"] {
+		max-width: 100%;
+	}
+}
+
+@layer components {
+	@import "./components/admonition.css";
+	@import "./components/github-card.css";
+
+	.cactus-link {
+		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
+	}
+
+	.title {
+		@apply text-accent-2 text-2xl font-semibold;
+	}
+}
+
+@utility prose {
+	--tw-prose-body: var(--color-global-text);
+	--tw-prose-bold: var(--color-global-text);
+	--tw-prose-bullets: var(--color-global-text);
+	--tw-prose-code: var(--color-global-text);
+	--tw-prose-headings: var(--color-accent-2);
+	--tw-prose-hr: 0.5px dashed #666;
+	--tw-prose-links: var(--color-global-text);
+	--tw-prose-quotes: var(--color-quote);
+	--tw-prose-th-borders: #666;
+}
