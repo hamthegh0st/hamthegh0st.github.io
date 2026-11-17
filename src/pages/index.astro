@@ -1,0 +1,4 @@
+---
+import {getCollection} from "astro:content"; import Base from "../layouts/Base.astro"; const posts=(await getCollection("posts")).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
+---
+<Base title="Malware Analysis & Reverse Engineering"><section class="intro"><h1>Malware Analysis &amp; Reverse Engineering</h1><p>Cybersecurity student focused on malware analysis, reverse engineering, and understanding how software works under the hood.</p><p>Technical write-ups, lab notes, unpacking, debugging, Windows internals, and low-level research.</p></section><h2>Latest posts</h2><ul class="post-list">{posts.map(p=><li><span class="date">{p.data.publishDate.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"})}</span><a class="post-title" href={`/posts/${p.id}/`}>{p.data.title}</a><p class="muted">{p.data.description}</p></li>)}</ul></Base>
