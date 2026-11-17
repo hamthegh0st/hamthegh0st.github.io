@@ -199,6 +199,7 @@ jobs:
           rm -rf .cactus-template
           # The GitHub App token cannot push workflow-file changes; keep the existing validation workflow untouched.
           git checkout HEAD -- .github/workflows/astro-validation.yml
+          git checkout HEAD -- .github/workflows/pages-deploy.yml
       - name: Commit synchronized theme
         run: |
           git config user.name github-actions[bot]
