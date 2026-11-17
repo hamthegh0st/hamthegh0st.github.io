@@ -31,6 +31,7 @@ jobs:
           cp -f src/content/posts/*.md content/posts/
           cp -a .cactus-template/src/. src/
           cp -a .cactus-template/public/. public/
+          if [ -d assets ]; then mkdir -p public/assets; cp -a assets/. public/assets/; fi
           for f in astro.config.ts package.json pnpm-lock.yaml pnpm-workspace.yaml tailwind.config.ts tsconfig.json .nvmrc .prettierrc.js .prettierignore biome.json; do
             if [ -f ".cactus-template/$f" ]; then cp ".cactus-template/$f" "$f"; fi
           done
@@ -196,6 +197,8 @@ jobs:
                 - run: pnpm build
           EOF
           rm -rf .cactus-template
+          # The GitHub App token cannot push workflow-file changes; keep the existing validation workflow untouched.
+          git checkout HEAD -- .github/workflows/astro-validation.yml
       - name: Commit synchronized theme
         run: |
           git config user.name github-actions[bot]
