@@ -1,7 +1,6 @@
 name: Sync upstream Astro Cactus template
 on:
-  push:
-    branches: [astro-cactus-migration]
+  workflow_dispatch:
 permissions:
   contents: write
 concurrency:
