@@ -1,0 +1,15 @@
+{
+  "name": "hamthegh0st-blog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.3.2",
+    "@astrojs/mdx": "8.0.1",
+    "@astrojs/sitemap": "3.7.4"
+  }
+}
