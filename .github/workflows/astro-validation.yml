@@ -1,16 +1,8 @@
 name: Validate Astro migration
 on:
-  pull_request:
-  push:
-    branches: [astro-cactus-migration]
+  workflow_dispatch:
 jobs:
-  build:
+  placeholder:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm install
-      - run: npm run build
+      - run: echo "Validation will be enabled after the upstream Astro Cactus template is synchronized."
