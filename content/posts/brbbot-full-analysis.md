@@ -2,6 +2,7 @@
 title: "[lab] Brbbot: Full Malware Analysis & Reverse Engineering"
 description: "A malware analysis and reverse engineering walkthrough of Brbbot, including traffic analysis and configuration decryption."
 publishDate: "2026-03-22T12:00:00+02:00"
+hidden: true
 tags: ["Malware Analysis"]
 ---
 
