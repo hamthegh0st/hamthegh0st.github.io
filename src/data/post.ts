@@ -7,6 +7,12 @@ export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
 	});
 }
 
+/** Return posts intended to appear in public listings and feeds. Hidden posts keep their direct URL. */
+export async function getVisiblePosts(): Promise<CollectionEntry<"post">[]> {
+	const posts = await getAllPosts();
+	return posts.filter((post) => !post.data.hidden);
+}
+
 /** Get tag metadata by tag name */
 export async function getTagMeta(tag: string): Promise<CollectionEntry<"tag"> | undefined> {
 	const tagEntries = await getCollection("tag", (entry) => {

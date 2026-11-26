@@ -1,10 +1,13 @@
-name: Validate Astro Cactus migration
+name: Validate Astro site
+
 on:
   pull_request:
   push:
-    branches: [astro-cactus-migration]
+    branches: [main]
+
 permissions:
   contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,10 +22,16 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - name: Verify migrated post routes and legacy images
+      - name: Verify post routes, hidden-post behavior, and static assets
         run: |
           test -f dist/posts/xworm-full-analysis/index.html
           test -f dist/posts/brbbot-full-analysis/index.html
           test -f dist/posts/hancitor-full-analysis/index.html
-          test -d dist/assets
-          test -d dist/assets/images
+          test -f dist/assets/images/brbbot/s1.PNG
+          grep -q 'name="robots" content="noindex,follow"' dist/posts/brbbot-full-analysis/index.html
+          for page in dist/index.html dist/posts/index.html dist/tags/malware-analysis/index.html dist/rss.xml; do
+            if grep -qF '[lab] Brbbot: Full Malware Analysis &amp; Reverse Engineering' "$page"; then
+              echo "Hidden Brbbot post leaked into $page"
+              exit 1
+            fi
+          done
