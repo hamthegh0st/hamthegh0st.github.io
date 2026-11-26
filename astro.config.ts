@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { satteri } from "@astrojs/markdown-satteri";
+import { satteri, satteriHeadingIdsPlugin } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@tailwindcss/vite";
