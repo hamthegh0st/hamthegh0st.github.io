@@ -3,7 +3,7 @@ layout: post
 title: "[lab] Brbbot: Full Malware Analysis & Reverse Engineering"
 #image: /assets/images/brbbot/kali.PNG
 date: 2026-03-22 12:00:00 +0200
-archived: true
+hidden: true
 categories: [Malware Analysis]
 ---
 
